@@ -8,7 +8,17 @@ Aristas = {
     'A-B': 8, 'A-E': 4, 'A-D': 5, 
     'B-E': 12, 'B-F': 4, 'B-C': 3, 
     'C-F': 9, 'C-G': 11, 
-    'D-E': 9, 'D-H': 6
+    'D-E': 9, 'D-H': 6, 
+    'E-F': 3, 'E-J': 5, 'E-I': 8, 
+    'F-G': 1, 'F-K': 8, 
+    'G-L': 7, 'G-K': 8, 
+    'H-I': 2, 'H-M': 7, 
+    'I-J': 10, 'I-M': 6, 
+    'J-K': 6, 'J-N': 9, 
+    'K-L': 5, 'K-P': 7, 
+    'L-P': 6, 
+    'M-N': 2, 
+    'N-P': 12
 }
 
 def recorrido_busqueda_anchura(): 
