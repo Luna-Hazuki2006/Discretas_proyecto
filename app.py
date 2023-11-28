@@ -28,7 +28,13 @@ def recorrido_busqueda_profundidad():
     pass
 
 def algoritmo_kruskal(): 
-    pass
+    listaNumerica = []
+    todo = max(sorted(list(Aristas.values())))
+    for i in range(todo): 
+        lista = list(filter(lambda x: Aristas[x] == i + 1, Aristas.keys()))
+        listaNumerica.append(lista)
+    print(listaNumerica)
+    print('hola mundo')
 
 def algoritmo_prim(): 
     pass
