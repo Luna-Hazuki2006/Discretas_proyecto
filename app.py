@@ -82,6 +82,9 @@ def algoritmo_prim():
     Nuevos_Vertices = []
     Aristas_Restantes = list(Aristas.keys())
 
+    while True: 
+        break
+
     print("*********************************")
     print('Algoritmo de Prim')
     print('Aristas: ')
