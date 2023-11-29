@@ -81,8 +81,11 @@ def algoritmo_prim():
     Nuevas_Aristas = []
     Nuevos_Vertices = []
     Aristas_Restantes = list(Aristas.keys())
+    actual = Vertices[0]
 
-    while True: 
+    while len(Nuevos_Vertices) <= 15: 
+        busqueda = list(filter(lambda x: actual in x, Aristas_Restantes))
+        print(busqueda)
         break
 
     print("*********************************")
@@ -99,7 +102,7 @@ def algoritmo_prim():
 def main(): 
     # recorrido_busqueda_anchura()
     # recorrido_busqueda_profundidad()
-    algoritmo_kruskal()
+    # algoritmo_kruskal()
     algoritmo_prim()
 
 if __name__ == '__main__': 
