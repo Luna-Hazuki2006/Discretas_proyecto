@@ -1,3 +1,5 @@
+from pprint import pprint
+
 Vertices = [
     'A', 'B', 'C', 'D', 'E', 
     'F', 'G', 'H', 'I', 'J', 
@@ -21,37 +23,79 @@ Aristas = {
     'N-P': 12
 }
 
+Nuevas_Aristas = []
+Nuevos_Vertices = []
+
 def recorrido_busqueda_anchura(): 
-    pass
+    Nuevas_Aristas = []
+    Nuevos_Vertices = []
+    data = []
+    actual = Vertices[0]
+    final = list(filter(lambda x: actual in x, Aristas.keys()))
+    
 
 def recorrido_busqueda_profundidad():
-    pass
+    Nuevas_Aristas = []
+    Nuevos_Vertices = []
 
 def algoritmo_kruskal(): 
     Nuevas_Aristas = []
+    Nuevos_Vertices = []
     listaNumerica = []
     todo = max(sorted(list(Aristas.values())))
-    for i in range(todo): 
-        lista = list(filter(lambda x: Aristas[x] == i + 1, Aristas.keys()))
+    for i in range(1, todo): 
+        lista = list(filter(lambda x: Aristas[x] == i, Aristas.keys()))
         listaNumerica.append(lista)
     for esto in listaNumerica: 
         for este in esto: 
-            if este not in Nuevas_Aristas: 
+            primero = este[0]
+            segundo = este[2]
+            if (primero not in Nuevos_Vertices and 
+                segundo not in Nuevos_Vertices): 
+                Nuevos_Vertices.append(primero)
+                Nuevos_Vertices.append(segundo)
                 Nuevas_Aristas.append(este)
-                
-            
-    print(listaNumerica)
-    print('hola mundo')
+            elif (primero not in Nuevos_Vertices and 
+                  segundo in Nuevos_Vertices): 
+                Nuevos_Vertices.append(primero)
+                Nuevas_Aristas.append(este)
+            elif (primero in Nuevos_Vertices and 
+                  segundo not in Nuevos_Vertices): 
+                Nuevos_Vertices.append(segundo)
+                Nuevas_Aristas.append(este)
+            else: 
+                Nuevas_Aristas.append(este)
+            # print(Nuevas_Aristas)
+        if len(Nuevas_Aristas) is (len(Vertices) - 1): break
+
+    resultado = sum((Aristas[x]) for x in Nuevas_Aristas)
+    
+    print("*********************************")
+    print('Algoritmo de Kruskal')
+    print('Aristas: ')
     print(Nuevas_Aristas)
+    print(f"La ponderación mínima es de: {resultado}")
+    print('*********************************')
 
 def algoritmo_prim(): 
     Nuevas_Aristas = []
     Nuevos_Vertices = []
+    Aristas_Restantes = list(Aristas.keys())
 
+    print("*********************************")
+    print('Algoritmo de Prim')
+    print('Aristas: ')
+    print(Nuevas_Aristas)
+    print('Aristas restantes: ')
+    print(Aristas_Restantes)
+    print('Vertices: ')
+    print(Nuevos_Vertices)
+    print(f"La ponderación mínima es de: 0")
+    print('*********************************')
 
 def main(): 
-    recorrido_busqueda_anchura()
-    recorrido_busqueda_profundidad()
+    # recorrido_busqueda_anchura()
+    # recorrido_busqueda_profundidad()
     algoritmo_kruskal()
     algoritmo_prim()
 
