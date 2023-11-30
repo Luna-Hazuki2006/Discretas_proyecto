@@ -97,18 +97,16 @@ def algoritmo_prim():
             prueba = list(filter(lambda x: (x.__contains__(esto) and 
                                             not Nuevas_Aristas.__contains__(esto)), 
                                             Aristas.keys()))
-            for este in prueba: lista.append(este)
-        print(Aristas_Restantes)
-        print(lista)
+            for este in prueba: 
+                lista.append(este)
+                lista = list(set(lista))
         lista = sorted(lista, key=lambda x: Aristas[x])
         menor = lista[0]
-        print(menor)
         Nuevas_Aristas.append(menor)
         Aristas_Restantes = list(filter(lambda x: x != menor, Aristas_Restantes))
-        print(Nuevas_Aristas)
-        print(Nuevos_Vertices)
         primero = menor[0]
         segundo = menor[2]
+        print(menor)
         if primero != menor: actual = segundo
         elif segundo != menor: actual = primero
         print(actual)
