@@ -94,7 +94,8 @@ def algoritmo_prim():
             Nuevos_Vertices.append(actual)
         lista = []
         for esto in Nuevos_Vertices: 
-            prueba = list(filter(lambda x: (x.__contains__(esto)), 
+            prueba = list(filter(lambda x: (x.__contains__(esto) and 
+                                            not Nuevas_Aristas.__contains__(esto)), 
                                             Aristas.keys()))
             for este in prueba: lista.append(este)
         print(Aristas_Restantes)
@@ -108,8 +109,9 @@ def algoritmo_prim():
         print(Nuevos_Vertices)
         primero = menor[0]
         segundo = menor[2]
-        if primero == menor: actual = segundo
-        elif segundo == menor: actual = primero
+        if primero != menor: actual = segundo
+        elif segundo != menor: actual = primero
+        print(actual)
 
     # for esto in Vertices: 
     #     Nuevos_Vertices.append(esto)
