@@ -60,7 +60,7 @@ def algoritmo_kruskal():
     Nuevos_Vertices = []
     listaNumerica = []
     todo = max(sorted(list(Aristas.values())))
-    for i in range(1, todo + 1): 
+    for i in range(1, todo): 
         lista = list(filter(lambda x: Aristas[x] == i, Aristas.keys()))
         listaNumerica.append(lista)
     print(listaNumerica)
@@ -81,8 +81,8 @@ def algoritmo_kruskal():
                   not Nuevos_Vertices.__contains__(segundo)): 
                 Nuevos_Vertices.append(segundo)
                 Nuevas_Aristas.append(este)
-            elif len(Nuevos_Vertices) == len(Vertices): 
-                Nuevas_Aristas.append(este)
+            # elif len(Nuevos_Vertices) == len(Vertices): 
+            #     Nuevas_Aristas.append(este)
             if len(Nuevas_Aristas) is (len(Vertices) - 1): break
         if len(Nuevas_Aristas) is (len(Vertices) - 1): break
 
@@ -187,19 +187,19 @@ def main():
     # recorrido_busqueda_profundidad()
     lista = algoritmo_kruskal()
     # lista = algoritmo_prim()
-    # print("Cierra la ventana para continuar...")
-    # GRAFO = grafo_Oficial.Graph()
-    # lista = list(map(lambda x: (x[0], x[2], Aristas[x]), lista))
-    # print('litas')
-    # print(lista)
-    # GRAFO.add_nodes_from(Vertices)
-    # GRAFO.add_weighted_edges_from(lista)
+    print("Cierra la ventana para continuar...")
+    GRAFO = grafo_Oficial.Graph()
+    lista = list(map(lambda x: (x[0], x[2], Aristas[x]), lista))
+    print('litas')
+    print(lista)
+    GRAFO.add_nodes_from(Vertices)
+    GRAFO.add_weighted_edges_from(lista)
 
-    # pos=grafo_Oficial.spring_layout(GRAFO, seed=4)
-    # grafo_Oficial.draw_networkx(GRAFO, pos)
-    # labels = grafo_Oficial.get_edge_attributes(GRAFO, 'weight')
-    # grafo_Oficial.draw_networkx_edge_labels(GRAFO, pos, edge_labels=labels)
-    # graficador.show()
+    pos=grafo_Oficial.spring_layout(GRAFO, seed=4)
+    grafo_Oficial.draw_networkx(GRAFO, pos)
+    labels = grafo_Oficial.get_edge_attributes(GRAFO, 'weight')
+    grafo_Oficial.draw_networkx_edge_labels(GRAFO, pos, edge_labels=labels)
+    graficador.show()
 
 if __name__ == '__main__': 
     main()
