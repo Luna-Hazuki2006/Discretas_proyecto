@@ -81,10 +81,11 @@ def algoritmo_kruskal():
                   not Nuevos_Vertices.__contains__(segundo)): 
                 Nuevos_Vertices.append(segundo)
                 Nuevas_Aristas.append(este)
-            elif len(Nuevos_Vertices) == len(Vertices): 
-                Nuevas_Aristas.append(este)
-            if len(Nuevas_Aristas) == (len(Vertices)): break
-        if len(Nuevas_Aristas) == (len(Vertices)): break
+            # elif len(Nuevos_Vertices) == len(Vertices): 
+            #     Nuevas_Aristas.append(este)
+            else: Nuevas_Aristas.append(este)
+            if len(Nuevas_Aristas) == (len(Vertices) - 1): break
+        if len(Nuevas_Aristas) == (len(Vertices) - 1): break
 
     resultado = sum((Aristas[x]) for x in Nuevas_Aristas)
     # print(listaNumerica)
