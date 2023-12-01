@@ -16,8 +16,8 @@ Aristas = {
     'E-F': 3, 'E-J': 5, 'E-I': 8, 
     'F-G': 1, 'F-K': 8, 
     'G-L': 7, 'G-K': 8, 
-    'H-I': 2, 'H-M': 7, 
-    'I-J': 10, 'I-M': 6, 
+    'H-I': 1, 'H-M': 1, 
+    'I-J': 10, 'I-M': 1, 
     'J-K': 6, 'J-N': 9, 
     'K-L': 5, 'K-P': 7, 
     'L-P': 6, 
@@ -25,8 +25,8 @@ Aristas = {
     'N-P': 12
 }
 
-Nuevas_Aristas = []
-Nuevos_Vertices = []
+# Nuevas_Aristas = []
+# Nuevos_Vertices = []
 
 def recorrido_busqueda_anchura(): 
     Nuevas_Aristas = []
@@ -63,6 +63,7 @@ def algoritmo_kruskal():
     for i in range(1, todo + 1): 
         lista = list(filter(lambda x: Aristas[x] == i, Aristas.keys()))
         listaNumerica.append(lista)
+    print(listaNumerica)
     for esto in listaNumerica: 
         for este in esto: 
             primero = este[0]
@@ -80,7 +81,7 @@ def algoritmo_kruskal():
                   not Nuevos_Vertices.__contains__(segundo)): 
                 Nuevos_Vertices.append(segundo)
                 Nuevas_Aristas.append(este)
-            else: 
+            elif len(Nuevos_Vertices) == len(Vertices): 
                 Nuevas_Aristas.append(este)
             if len(Nuevas_Aristas) is (len(Vertices) - 1): break
         if len(Nuevas_Aristas) is (len(Vertices) - 1): break
@@ -185,20 +186,20 @@ def main():
     # lista = recorrido_busqueda_anchura()
     # recorrido_busqueda_profundidad()
     lista = algoritmo_kruskal()
-    # algoritmo_prim()
-    print("Cierra la ventana para continuar...")
-    GRAFO = grafo_Oficial.Graph()
-    lista = list(map(lambda x: (x[0], x[2], Aristas[x]), lista))
-    print('litas')
-    print(lista)
-    GRAFO.add_nodes_from(Vertices)
-    GRAFO.add_weighted_edges_from(lista)
+    # lista = algoritmo_prim()
+    # print("Cierra la ventana para continuar...")
+    # GRAFO = grafo_Oficial.Graph()
+    # lista = list(map(lambda x: (x[0], x[2], Aristas[x]), lista))
+    # print('litas')
+    # print(lista)
+    # GRAFO.add_nodes_from(Vertices)
+    # GRAFO.add_weighted_edges_from(lista)
 
-    pos=grafo_Oficial.spring_layout(GRAFO, seed=4)
-    grafo_Oficial.draw_networkx(GRAFO, pos)
-    labels = grafo_Oficial.get_edge_attributes(GRAFO, 'weight')
-    grafo_Oficial.draw_networkx_edge_labels(GRAFO, pos, edge_labels=labels)
-    graficador.show()
+    # pos=grafo_Oficial.spring_layout(GRAFO, seed=4)
+    # grafo_Oficial.draw_networkx(GRAFO, pos)
+    # labels = grafo_Oficial.get_edge_attributes(GRAFO, 'weight')
+    # grafo_Oficial.draw_networkx_edge_labels(GRAFO, pos, edge_labels=labels)
+    # graficador.show()
 
 if __name__ == '__main__': 
     main()
