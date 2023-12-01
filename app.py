@@ -33,16 +33,20 @@ def recorrido_busqueda_anchura():
     Nuevos_Vertices = []
     data = []
     actual = Vertices[0]
-    while len(Vertices) - 1 == len(Nuevas_Aristas): 
+    while len(Vertices) - 1 != len(Nuevas_Aristas): 
         cercanos = list(filter(lambda x: x.__contains__(actual), Aristas.keys()))
+        data.append(cercanos)
         for esto in cercanos: 
             print(esto)
-    resultado = 0
+        print(data)
+        break
+
     print("*********************************")
     print('Recorrido de busqueda anchura')
+    print('Vertices: ')
+    print(Nuevos_Vertices)
     print('Aristas: ')
     print(Nuevas_Aristas)
-    print(f"La ponderación mínima es de: {resultado}")
     print('*********************************')
     return Nuevas_Aristas
 
@@ -178,23 +182,23 @@ def algoritmo_prim():
     return Nuevas_Aristas
 
 def main(): 
-    lista = recorrido_busqueda_anchura()
+    # lista = recorrido_busqueda_anchura()
     # recorrido_busqueda_profundidad()
     lista = algoritmo_kruskal()
     # algoritmo_prim()
     print("Cierra la ventana para continuar...")
     GRAFO = grafo_Oficial.Graph()
-    print(Nuevas_Aristas)
     lista = list(map(lambda x: (x[0], x[2], Aristas[x]), lista))
     print('litas')
     print(lista)
+    GRAFO.add_nodes_from(Vertices)
     GRAFO.add_weighted_edges_from(lista)
 
     pos=grafo_Oficial.spring_layout(GRAFO, seed=4)
-    grafo_Oficial.draw_networkx(GRAFO,pos)
-    labels = grafo_Oficial.get_edge_attributes(GRAFO,'weight')
-    grafo_Oficial.draw_networkx_edge_labels(GRAFO,pos,edge_labels=labels)
-    # graficador.show()
+    grafo_Oficial.draw_networkx(GRAFO, pos)
+    labels = grafo_Oficial.get_edge_attributes(GRAFO, 'weight')
+    grafo_Oficial.draw_networkx_edge_labels(GRAFO, pos, edge_labels=labels)
+    graficador.show()
 
 if __name__ == '__main__': 
     main()
