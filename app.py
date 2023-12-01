@@ -69,7 +69,7 @@ def algoritmo_kruskal():
         if len(Nuevas_Aristas) is (len(Vertices) - 1): break
 
     resultado = sum((Aristas[x]) for x in Nuevas_Aristas)
-    print(listaNumerica)
+    # print(listaNumerica)
     print("*********************************")
     print('Algoritmo de Kruskal')
     print('Aristas: ')
@@ -155,10 +155,10 @@ def algoritmo_prim():
     print('*********************************')
 
 def main(): 
-    # recorrido_busqueda_anchura()
+    recorrido_busqueda_anchura()
     # recorrido_busqueda_profundidad()
     algoritmo_kruskal()
-    algoritmo_prim()
+    # algoritmo_prim()
 
 if __name__ == '__main__': 
     main()
