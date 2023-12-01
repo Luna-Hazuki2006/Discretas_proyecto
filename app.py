@@ -16,8 +16,8 @@ Aristas = {
     'E-F': 3, 'E-J': 5, 'E-I': 8, 
     'F-G': 1, 'F-K': 8, 
     'G-L': 7, 'G-K': 8, 
-    'H-I': 1, 'H-M': 1, 
-    'I-J': 10, 'I-M': 1, 
+    'H-I': 2, 'H-M': 7, 
+    'I-J': 10, 'I-M': 6, 
     'J-K': 6, 'J-N': 9, 
     'K-L': 5, 'K-P': 7, 
     'L-P': 6, 
@@ -81,10 +81,10 @@ def algoritmo_kruskal():
                   not Nuevos_Vertices.__contains__(segundo)): 
                 Nuevos_Vertices.append(segundo)
                 Nuevas_Aristas.append(este)
-            # elif len(Nuevos_Vertices) == len(Vertices): 
-            #     Nuevas_Aristas.append(este)
-            if len(Nuevas_Aristas) is (len(Vertices) - 1): break
-        if len(Nuevas_Aristas) is (len(Vertices) - 1): break
+            elif len(Nuevos_Vertices) == len(Vertices): 
+                Nuevas_Aristas.append(este)
+            if len(Nuevas_Aristas) == (len(Vertices)): break
+        if len(Nuevas_Aristas) == (len(Vertices)): break
 
     resultado = sum((Aristas[x]) for x in Nuevas_Aristas)
     # print(listaNumerica)
