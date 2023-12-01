@@ -96,7 +96,7 @@ def algoritmo_prim():
         for esto in Nuevos_Vertices: 
             prueba = list(filter(lambda x: (x.__contains__(esto) and 
                                             not Nuevas_Aristas.__contains__(esto)), 
-                                            Aristas.keys()))
+                                            Aristas_Restantes))
             for este in prueba: 
                 lista.append(este)
                 lista = list(set(lista))
@@ -106,10 +106,15 @@ def algoritmo_prim():
         Aristas_Restantes = list(filter(lambda x: x != menor, Aristas_Restantes))
         primero = menor[0]
         segundo = menor[2]
-        print(menor)
+        verdad = [primero, segundo]
         if primero != menor: actual = segundo
         elif segundo != menor: actual = primero
-        print(actual)
+
+    
+    retorno = Nuevas_Aristas.pop()
+    Nuevas_Aristas.append(Aristas_Restantes[0])
+    Aristas_Restantes.remove(Aristas_Restantes[0])
+    Aristas_Restantes.append(retorno)
 
     # for esto in Vertices: 
     #     Nuevos_Vertices.append(esto)
@@ -152,7 +157,7 @@ def algoritmo_prim():
 def main(): 
     # recorrido_busqueda_anchura()
     # recorrido_busqueda_profundidad()
-    # algoritmo_kruskal()
+    algoritmo_kruskal()
     algoritmo_prim()
 
 if __name__ == '__main__': 
