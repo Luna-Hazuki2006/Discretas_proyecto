@@ -25,8 +25,8 @@ Aristas = {
     'N-P': 12
 }
 
-# Nuevas_Aristas = []
-# Nuevos_Vertices = []
+Nuevas_Aristas = []
+Nuevos_Vertices = []
 
 def recorrido_busqueda_anchura(): 
     Nuevas_Aristas = []
