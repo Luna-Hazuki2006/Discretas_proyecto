@@ -34,13 +34,28 @@ def recorrido_busqueda_anchura():
     Nuevos_Vertices = []
     data = []
     actual = Vertices[0]
-    while len(Vertices) - 1 != len(Nuevas_Aristas): 
-        cercanos = list(filter(lambda x: x.__contains__(actual), Aristas.keys()))
-        data.append(cercanos)
-        for esto in cercanos: 
-            print(esto)
-        print(data)
-        break
+    print()
+    data.append(actual)
+    while len(Vertices) != len(Nuevas_Aristas): 
+        prueba = []
+        for esto in data: 
+            cercanos = list(filter(lambda x: esto in x , Aristas.keys()))
+            for este in cercanos: 
+                # print(este)
+                # prueba.append(este)
+                primero = este[0]
+                segundo = este[1]
+                if primero not in Nuevos_Vertices: 
+                    Nuevos_Vertices.append(primero)
+                    prueba.append(primero)
+                if segundo not in Nuevos_Vertices: 
+                    Nuevos_Vertices.append(segundo)
+                    prueba.append(segundo)
+                Nuevas_Aristas.append(este)
+            print(cercanos)
+        data = prueba
+    
+    resultado = sum((Aristas[x]) for x in Nuevas_Aristas)
 
     print("*********************************")
     print('Recorrido de busqueda anchura')
@@ -48,12 +63,48 @@ def recorrido_busqueda_anchura():
     print(Nuevos_Vertices)
     print('Aristas: ')
     print(Nuevas_Aristas)
+    print(f"La ponderación es de: {resultado}")
     print('*********************************')
     return Nuevas_Aristas
 
 def recorrido_busqueda_profundidad():
     Nuevas_Aristas = []
     Nuevos_Vertices = []
+    Nuevas_Aristas = []
+    Nuevos_Vertices = []
+    data = []
+    actual = Vertices[0]
+    print()
+    data.append(actual)
+    while len(Vertices) != len(Nuevas_Aristas): 
+        prueba = []
+        for esto in data: 
+            cercanos = list(filter(lambda x: esto in x , Aristas.keys()))
+            for este in cercanos: 
+                # print(este)
+                # prueba.append(este)
+                primero = este[0]
+                segundo = este[1]
+                if primero not in Nuevos_Vertices: 
+                    Nuevos_Vertices.append(primero)
+                    prueba.append(primero)
+                if segundo not in Nuevos_Vertices: 
+                    Nuevos_Vertices.append(segundo)
+                    prueba.append(segundo)
+                Nuevas_Aristas.append(este)
+            print(cercanos)
+        data = prueba
+    
+    resultado = sum((Aristas[x]) for x in Nuevas_Aristas)
+
+    print("*********************************")
+    print('Recorrido de busqueda anchura')
+    print('Vertices: ')
+    print(Nuevos_Vertices)
+    print('Aristas: ')
+    print(Nuevas_Aristas)
+    print(f"La ponderación es de: {resultado}")
+    print('*********************************')
     return Nuevas_Aristas
 
 def algoritmo_kruskal(): 
@@ -236,10 +287,20 @@ def probar_Ciclo(primero, segundo, v1, v2):
 #     return lista
 
 def main(): 
-    lista = recorrido_busqueda_anchura()
-    lista = recorrido_busqueda_profundidad()
-    lista = algoritmo_kruskal()
-    lista = algoritmo_prim()
+
+    print('Bienvenido a la calculadora de grafos :D')
+    print('elige una de las siguientes opciones: ')
+    print('a. Conseguir busqueda de anchura')
+    print('b. Conseguir busqueda de profundidad')
+    print('c. Conseguir árbol de expansión mínimo con Kruskal')
+    print('d. Conseguir árbol de expansión mínimo con Prim')
+    decision = input('e. Salir sin nada\n')
+    if decision == 'a': lista = recorrido_busqueda_anchura()
+    elif decision == 'b': lista = recorrido_busqueda_profundidad()
+    elif decision == 'c': lista = algoritmo_kruskal()
+    elif decision == 'd': lista = algoritmo_prim()
+    elif decision == 'e': print('Chao, que le vaya bien :D')
+    else: print('Esa no era una opción >:v')
     print("Cierra la ventana para continuar...")
     GRAFO = grafo_Oficial.Graph()
     lista = list(map(lambda x: (x[0], x[2], Aristas[x]), lista))
