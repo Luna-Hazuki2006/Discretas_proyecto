@@ -1,4 +1,5 @@
 from pprint import pprint
+from collections import defaultdict
 import matplotlib.pyplot as graficador
 import networkx as grafo_Oficial
 
@@ -16,8 +17,8 @@ Aristas = {
     'E-F': 3, 'E-J': 5, 'E-I': 8, 
     'F-G': 1, 'F-K': 8, 
     'G-L': 7, 'G-K': 8, 
-    'H-I': 2, 'H-M': 7, 
-    'I-J': 10, 'I-M': 6, 
+    'H-I': 1, 'H-M': 1, 
+    'I-J': 10, 'I-M': 1, 
     'J-K': 6, 'J-N': 9, 
     'K-L': 5, 'K-P': 7, 
     'L-P': 6, 
@@ -60,7 +61,7 @@ def algoritmo_kruskal():
     Nuevos_Vertices = []
     listaNumerica = []
     todo = max(sorted(list(Aristas.values())))
-    for i in range(1, todo): 
+    for i in range(1, todo + 1): 
         lista = list(filter(lambda x: Aristas[x] == i, Aristas.keys()))
         listaNumerica.append(lista)
     print(listaNumerica)
@@ -82,10 +83,35 @@ def algoritmo_kruskal():
                 Nuevos_Vertices.append(segundo)
                 Nuevas_Aristas.append(este)
             # elif len(Nuevos_Vertices) == len(Vertices): 
-            #     Nuevas_Aristas.append(este)
-            else: Nuevas_Aristas.append(este)
-            if len(Nuevas_Aristas) == (len(Vertices) - 1): break
-        if len(Nuevas_Aristas) == (len(Vertices) - 1): break
+                # Nuevas_Aristas.append(este)
+            elif len(Nuevos_Vertices) != len(Vertices): 
+                lista1 = list(filter(lambda x: primero in x, Nuevas_Aristas))
+                lista2 = list(filter(lambda x: segundo in x, Nuevas_Aristas))
+                if probar_Ciclo(lista1, lista2, primero, segundo): 
+                    Nuevas_Aristas.append(este)
+                print(lista1)
+                print(lista2)
+                # lista1, lista2 = probar_Ciclo(primero, segundo)
+                # print(lista1)
+                # lista1 = list(filter(lambda x: x[0] in Nuevas_Aristas, lista1))
+                # lista1 = list(map(lambda x: x[0], lista1))
+                # print(lista1)
+                # print(lista2)
+                # lista2 = list(filter(lambda x: x[0] in Nuevas_Aristas, lista2))
+                # lista2 = list(map(lambda x: x[0], lista2))
+                # print(lista2)
+                # if len(lista1) == len(lista2): 
+                #     # print('iguales')
+                #     # for e in lista1: 
+                #     #     if not lista2.__contains__(e): 
+                #     #         Nuevas_Aristas.append(este)
+                #     #         break
+
+                # else: 
+                #     print('desiguales')
+                #     Nuevas_Aristas.append(este)
+            if len(Nuevas_Aristas) == (len(Vertices)): break
+        if len(Nuevas_Aristas) == (len(Vertices)): break
 
     resultado = sum((Aristas[x]) for x in Nuevas_Aristas)
     # print(listaNumerica)
@@ -101,7 +127,7 @@ def algoritmo_prim():
     Nuevas_Aristas = []
     Nuevos_Vertices = []
     Aristas_Restantes = []
-    maximo = len(Vertices) - 1
+    maximo = len(Vertices) 
     actual = Vertices[0]
     todo = max(sorted(list(Aristas.values())))
     for i in range(1, todo + 1): 
@@ -183,11 +209,37 @@ def algoritmo_prim():
     print('*********************************')
     return Nuevas_Aristas
 
+def probar_Ciclo(primero, segundo, v1, v2):
+    primero = list(map(lambda x: x[0] if x[0] != v1 else x[2], primero))
+    segundo = list(map(lambda x: x[0] if x[0] != v2 else x[2], segundo))
+    print(primero)
+    print(segundo)
+    for e in primero: 
+        for i in segundo: 
+            if e == i: return False
+    return True
+    # primera_lista = []
+    # segunda_lista = [] 
+    # lista = obtener_listas(primero, primera_lista)
+    # for i in lista: 
+    #     esto = obtener_listas(i, primera_lista)
+    #     primera_lista.append(esto)
+    # lista = obtener_listas(segundo, segunda_lista)
+    # for i in lista: 
+    #     esto = obtener_listas(i, segunda_lista)
+    #     segunda_lista.append(esto)
+    # return primera_lista, segunda_lista
+
+# def obtener_listas(busqueda, prueba): 
+#     print(f'busqueda de {busqueda}')
+#     lista = list(filter(lambda x: busqueda in x and busqueda not in prueba, Aristas))
+#     return lista
+
 def main(): 
-    # lista = recorrido_busqueda_anchura()
-    # recorrido_busqueda_profundidad()
+    lista = recorrido_busqueda_anchura()
+    lista = recorrido_busqueda_profundidad()
     lista = algoritmo_kruskal()
-    # lista = algoritmo_prim()
+    lista = algoritmo_prim()
     print("Cierra la ventana para continuar...")
     GRAFO = grafo_Oficial.Graph()
     lista = list(map(lambda x: (x[0], x[2], Aristas[x]), lista))
